@@ -11,13 +11,25 @@ import { InlineForm } from '../src/InlineForm';
 interface Props extends HTMLAttributes<HTMLFormElement> {
   publicKey: string;
   paymentId: string;
+  showErrors: boolean;
+  showSubmitButton: boolean;
+  submitButtonText: string;
 }
 
-const Inline: FC<Props> = ({publicKey, paymentId}) => {
+const Inline: FC<Props> = ({
+  publicKey,
+  paymentId,
+  showErrors,
+  showSubmitButton,
+  submitButtonText
+}) => {
   const [inlineSDK, isValid, validationErrorMessage] = useInlineSDK(
     publicKey,
     {
-      layout: 'plain'
+      layout: 'plain',
+      showErrors,
+      showSubmitButton,
+      submitButtonText,
     }
   );
 
@@ -49,11 +61,9 @@ const Inline: FC<Props> = ({publicKey, paymentId}) => {
 
   return (
     <InlineForm
-      isValid={isValid}
       onSubmit={onSubmit}
-      title='Pay R20'
     >
-      <p className="error-message">{validationErrorMessage}</p>
+      {!showErrors && (<p className="error-message">{validationErrorMessage}</p>)}
     </InlineForm>
   );
 }
@@ -88,5 +98,8 @@ export const Default = Template.bind({});
 
 Default.args = {
   publicKey: 'pk_test_68b64fa8qRzN52Xe2234',
-  paymentId: 'p_pLpJGWOoJ2BflwVf61cdk0gZ'
+  paymentId: 'p_pLpJGWOoJ2BflwVf61cdk0gZ',
+  showErrors: true,
+  showSubmitButton: true,
+  submitButtonText: 'Pay R20'
 };
