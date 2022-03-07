@@ -18,13 +18,13 @@ export interface YocoInlineConfig {
 }
 
 type YocoSDKInlineSubmission = {
-    id: string;
-    customer?: string;
-    paymentMethodDetails?: {
-        save: boolean;
-        usable: 'offline' | 'online';
-    };
-}
+  id: string;
+  customer?: string;
+  paymentMethodDetails?: {
+    save: boolean;
+    usable: 'offline' | 'online';
+  };
+};
 
 export interface YocoSDKInlineInstance {
   mount: (element: string) => void;
@@ -35,22 +35,22 @@ export interface YocoSDKInlineInstance {
 }
 
 export interface YocoPopupConfig {
-    id?: string;
-    callback: (result: YocoSDKResult) => void;
-    onClose?: () => void;
-    amountInCents?: number;
-    currency?: Currency;
-    customer?: string;
-    'customer.email'?: string;
-    'customer.phone'?: string;
-    'customer.firstName'?: string;
-    'customer.lastName'?: string;
-    description?: string;
-    image?: string;
-    metadata?: object;
-    name?: string;
-    paymentMethod?: string;
-    paymentType?: 'CARD'
+  id?: string;
+  callback: (result: YocoSDKResult) => void;
+  onClose?: () => void;
+  amountInCents?: number;
+  currency?: Currency;
+  customer?: string;
+  'customer.email'?: string;
+  'customer.phone'?: string;
+  'customer.firstName'?: string;
+  'customer.lastName'?: string;
+  description?: string;
+  image?: string;
+  metadata?: object;
+  name?: string;
+  paymentMethod?: string;
+  paymentType?: 'CARD';
 }
 
 export interface YocoSDKResult {
@@ -81,6 +81,6 @@ export interface BlackbirdSDK {
 }
 
 export type InlineSDkValidity = {
-    isValid: boolean;
-    validationErrorMessage: string | null;
-}
+  isValid: boolean;
+  validationErrorMessage: string | null;
+};

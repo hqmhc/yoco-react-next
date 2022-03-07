@@ -5,15 +5,14 @@ export interface Props extends HTMLAttributes<HTMLFormElement> {
   onSubmit: () => void;
 }
 
-export const InlineForm: FC<Props> = ({
-  children,
-  onSubmit,
-  ...rest
-}) => {
+export const InlineForm: FC<Props> = ({ children, onSubmit, ...rest }) => {
   return (
     <form
       id="payment-form"
-      onSubmit={(event) => { event.preventDefault(); onSubmit() }}
+      onSubmit={(event) => {
+        event.preventDefault();
+        onSubmit();
+      }}
       {...rest}
     >
       <div className="one-liner">
@@ -21,5 +20,5 @@ export const InlineForm: FC<Props> = ({
       </div>
       {children}
     </form>
-  )
-}
+  );
+};
