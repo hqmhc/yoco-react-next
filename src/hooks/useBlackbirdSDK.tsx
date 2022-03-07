@@ -4,7 +4,8 @@ import { BlackbirdSDK } from '../types';
 
 const addScript = (onLoad: () => void) => {
   const script = document.createElement('script');
-  script.src = 'https://blackbird-web-sdk.netlify.app/sdk/v1/blackbird-web-sdk.js';
+  script.src =
+    'https://blackbird-web-sdk.netlify.app/sdk/v1/blackbird-web-sdk.js';
   script.async = true;
   script.onload = onLoad;
   document.head.appendChild(script);
@@ -16,7 +17,7 @@ export const useBlackbirdSDK = (publicKey: string, id?: string) => {
     setBlackbirdSDK(
       new (window as any).BlackbirdSDK({
         publicKey,
-        id
+        id,
       })
     );
   };
