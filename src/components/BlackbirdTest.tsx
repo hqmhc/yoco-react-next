@@ -1,16 +1,16 @@
 import React, { FC, HTMLAttributes } from 'react';
-import { useYoco } from '../../src/hooks/useYoco';
-import { YocoCheckoutResult } from '../../src/types';
+import { useBlackbirdSDK } from '../hooks/useBlackbirdSDK';
+import { YocoSDKResult } from '../../src/types';
 
 interface Props extends HTMLAttributes<HTMLFormElement> {
   publicKey: string;
   paymentId: string;
 }
 
-export const SDKTest: FC<Props> = ({ publicKey, paymentId }) => {
-  const yocoSDK = useYoco(publicKey, paymentId);
+export const BlackbirdTest: FC<Props> = ({ publicKey, paymentId }) => {
+  const blackbirdSDK = useBlackbirdSDK(publicKey, paymentId);
 
-  async function callback(res: YocoCheckoutResult) {
+  async function callback(res: YocoSDKResult) {
     alert('callback!');
     console.log({ res });
   }
@@ -20,10 +20,10 @@ export const SDKTest: FC<Props> = ({ publicKey, paymentId }) => {
   }
 
   async function onSubmit() {
-    if (!yocoSDK) {
+    if (!blackbirdSDK) {
       return;
     }
-    yocoSDK.showPopup({
+    blackbirdSDK.showPopup({
       callback,
       onClose,
     });

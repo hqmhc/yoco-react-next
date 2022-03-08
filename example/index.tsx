@@ -1,12 +1,12 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { InlineForm } from '../.';
+import { Thing } from '../.';
 
 const App = () => {
   return (
     <div>
-      <InlineForm onSubmit={() => {}} />
+      <Thing />
     </div>
   );
 };

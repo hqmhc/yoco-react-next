@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { PopupTest } from './components/PopupTest';
+import { PopupTest } from '../src/components/PopupTest';
 
 describe('usePopup Component', () => {
   it('renders without crashing', () => {

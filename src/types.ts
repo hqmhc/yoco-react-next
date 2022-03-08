@@ -1,6 +1,6 @@
 export type Currency = 'ZAR' | 'MUR';
 
-export type YocoCustomer = {
+export type Customer = {
   email: string;
   phone: string;
   firstName: string;
@@ -10,7 +10,7 @@ export type YocoCustomer = {
 export type YocoInlineLayout = 'plain' | 'basic' | 'field';
 
 export interface YocoInlineConfig {
-  YocoCustomer?: YocoCustomer;
+  customer?: Customer;
   layout: YocoInlineLayout;
   showErrors?: boolean;
   showSubmitButton?: boolean;
@@ -19,7 +19,7 @@ export interface YocoInlineConfig {
 
 type YocoSDKInlineSubmission = {
   id: string;
-  YocoCustomer?: string;
+  customer?: string;
   paymentMethodDetails?: {
     save: boolean;
     usable: 'offline' | 'online';
@@ -29,22 +29,22 @@ type YocoSDKInlineSubmission = {
 export interface YocoSDKInlineInstance {
   mount: (element: string) => void;
   on: (event: string, callback: () => void) => void;
-  submit: (submission: YocoSDKInlineSubmission) => Promise<YocoCheckoutResult>;
+  submit: (submission: YocoSDKInlineSubmission) => Promise<YocoSDKResult>;
   isValid: () => boolean;
   validationErrorMessage: () => string;
 }
 
 export interface YocoPopupConfig {
   id?: string;
-  callback: (result: YocoCheckoutResult) => void;
+  callback: (result: YocoSDKResult) => void;
   onClose?: () => void;
   amountInCents?: number;
   currency?: Currency;
-  YocoCustomer?: string;
-  'YocoCustomer.email'?: string;
-  'YocoCustomer.phone'?: string;
-  'YocoCustomer.firstName'?: string;
-  'YocoCustomer.lastName'?: string;
+  customer?: string;
+  'customer.email'?: string;
+  'customer.phone'?: string;
+  'customer.firstName'?: string;
+  'customer.lastName'?: string;
   description?: string;
   image?: string;
   metadata?: object;
@@ -53,7 +53,7 @@ export interface YocoPopupConfig {
   paymentType?: 'CARD';
 }
 
-export interface YocoCheckoutResult {
+export interface YocoSDKResult {
   id?: string;
   error?: {
     data: {
@@ -75,7 +75,12 @@ export interface YocoCheckoutResult {
   status: string;
 }
 
-export interface YocoSDK {
+export interface BlackbirdSDK {
   inline: (config: YocoInlineConfig) => YocoSDKInlineInstance;
   showPopup: (config: YocoPopupConfig) => void;
 }
+
+export type InlineSDkValidity = {
+  isValid: boolean;
+  validationErrorMessage: string | null;
+};
