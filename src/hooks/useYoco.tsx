@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { BlackbirdSDK } from '../types';
+import { YocoSDK } from '../types';
 
 const addScript = (onLoad: () => void) => {
   const script = document.createElement('script');
@@ -11,11 +11,11 @@ const addScript = (onLoad: () => void) => {
   document.head.appendChild(script);
 };
 
-export const useBlackbirdSDK = (publicKey: string, id?: string) => {
-  const [blackbirdSDK, setBlackbirdSDK] = useState<BlackbirdSDK>();
+export const useYoco = (publicKey: string, id?: string) => {
+  const [yocoSDK, setYocoSDK] = useState<YocoSDK>();
   const initSdk = () => {
-    setBlackbirdSDK(
-      new (window as any).BlackbirdSDK({
+    setYocoSDK(
+      new (window as any).yocoSDK({
         publicKey,
         id,
       })
@@ -23,11 +23,11 @@ export const useBlackbirdSDK = (publicKey: string, id?: string) => {
   };
 
   useEffect(() => {
-    if (!(window as any).BlackbirdSDK) {
+    if (!(window as any).yocoSDK) {
       addScript(() => initSdk());
     } else {
       initSdk();
     }
   }, []);
-  return blackbirdSDK;
+  return yocoSDK;
 };

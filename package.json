@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "2.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -35,8 +35,8 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "yoco-react",
-  "author": "zerochip",
+  "name": "@yoco/yoco-react",
+  "author": "Yoco (https://yoco.com)",
   "module": "dist/yoco-react.esm.js",
   "size-limit": [
     {
