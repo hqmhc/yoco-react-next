@@ -56,11 +56,11 @@ const PopupExample: FC = () => {
 }
 ```
 
-You can view the full list of configuration options for the showPopup method in the [usePopupHook reference](./docs/UsePopupHook.md).
+You can view the full list of configuration options for the showPopup method in the [usePopupHook reference](./docs/usePopupHook.md).
 
 ### Verifying successful payments
 
-The `YocoCheckoutResult` has an `id` that you can use for verifying a payment with a server to server call.
+The `YocoCheckoutResult` has an `id` that you can use for verifying a payment with a server-to-server call.
 Learn how to use the API in the [official guide](https://deploy-preview-38--modest-shannon-b4f7f0.netlify.app/blackbird/sdk/save-card-during-payment#6-optional-verify-the-payment-succeeded).
 
 ## Inline checkout experience
@@ -117,7 +117,7 @@ const Inline: FC<> = () => {
 
 If all you need is the base Yoco SDK without the hooks and components, the library exposes a `useYoco` hook.
 
-You can then use the SDK as normal according to the ofiicial docs. It is the same hook used internally by the rest of the hooks in this library.
+You can then use the SDK as normal according to the official docs. It is the same hook used internally by the rest of the hooks in this library.
 
 The hook expects your Yoco public key, and optionally a payment ID depending on your use case.
 
