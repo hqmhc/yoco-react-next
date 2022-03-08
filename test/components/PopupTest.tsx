@@ -1,6 +1,6 @@
 import React, { FC, HTMLAttributes } from 'react';
-import { usePopupSDK } from '../../src/hooks/usePopupSDK';
-import { YocoSDKResult } from '../../src/types';
+import { usePopup } from '../../src/hooks/usePopup';
+import { YocoCheckoutResult } from '../../src/types';
 
 interface Props extends HTMLAttributes<HTMLFormElement> {
   publicKey: string;
@@ -8,9 +8,9 @@ interface Props extends HTMLAttributes<HTMLFormElement> {
 }
 
 export const PopupTest: FC<Props> = ({ publicKey, paymentId }) => {
-  const [showPopup, isSDKReady] = usePopupSDK(publicKey, paymentId);
+  const [showPopup, isYocoReady] = usePopup(publicKey, paymentId);
 
-  async function callback(res: YocoSDKResult) {
+  async function callback(res: YocoCheckoutResult) {
     alert('callback!');
     console.log({ res });
   }
@@ -27,7 +27,7 @@ export const PopupTest: FC<Props> = ({ publicKey, paymentId }) => {
   }
 
   return (
-    <button disabled={!isSDKReady} onClick={onSubmit}>
+    <button disabled={!isYocoReady} onClick={onSubmit}>
       Pay
     </button>
   );

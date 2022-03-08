@@ -1,8 +1,8 @@
 import React, { FC, HTMLAttributes } from 'react';
 import { Meta, Story } from '@storybook/react';
 
-import { YocoSDKResult } from '../src/types';
-import { usePopupSDK } from '../src/hooks/usePopupSDK';
+import { YocoCheckoutResult } from '../src/types';
+import { usePopup } from '../src/hooks/usePopup';
 
 interface Props extends HTMLAttributes<HTMLFormElement> {
   publicKey: string;
@@ -10,9 +10,9 @@ interface Props extends HTMLAttributes<HTMLFormElement> {
 }
 
 const Popup: FC<Props> = ({ publicKey, paymentId }) => {
-  const [showPopup, isSDKReady] = usePopupSDK(publicKey, paymentId);
+  const [showPopup, isYocoReady] = usePopup(publicKey, paymentId);
 
-  async function callback(res: YocoSDKResult) {
+  async function callback(res: YocoCheckoutResult) {
     alert('callback!');
     console.log({ res });
   }
@@ -29,14 +29,14 @@ const Popup: FC<Props> = ({ publicKey, paymentId }) => {
   }
 
   return (
-    <button disabled={!isSDKReady} onClick={onSubmit}>
+    <button disabled={!isYocoReady} onClick={onSubmit}>
       Pay
     </button>
   );
 };
 
 const meta: Meta = {
-  title: 'useBlackbirdSDK',
+  title: 'useYoco',
   component: Popup,
   argTypes: {
     publicKey: {

@@ -1,12 +1,8 @@
 import React, { FC, HTMLAttributes, useEffect } from 'react';
 import { Meta, Story } from '@storybook/react';
 
-import { useInlineSDK } from '../src/hooks/useInlineSDK';
+import { useInline } from '../src/hooks/useInline';
 import { InlineForm } from '../src/InlineForm';
-
-/* todo
- https://deploy-preview-38--modest-shannon-b4f7f0.netlify.app/online/inline/reference/
-*/
 
 interface Props extends HTMLAttributes<HTMLFormElement> {
   publicKey: string;
@@ -23,7 +19,7 @@ const Inline: FC<Props> = ({
   showSubmitButton,
   submitButtonText
 }) => {
-  const [inlineSDK, isValid, validationErrorMessage] = useInlineSDK(
+  const [inline, isValid, validationErrorMessage] = useInline(
     publicKey,
     {
       layout: 'plain',
@@ -38,18 +34,18 @@ const Inline: FC<Props> = ({
   }, [isValid, validationErrorMessage]);
 
   useEffect(() => {
-    if (!inlineSDK) {
+    if (!inline) {
       return;
     }
-    inlineSDK.mount("#card-frame");
-  }, [inlineSDK]);
+    inline.mount("#card-frame");
+  }, [inline]);
 
   async function onSubmit() {
-    if (!isValid || !inlineSDK) {
+    if (!isValid || !inline) {
       return;
     }
     try {
-      const result = await inlineSDK.submit({
+      const result = await inline.submit({
         id: paymentId
       });
       console.log(result);
@@ -69,7 +65,7 @@ const Inline: FC<Props> = ({
 }
 
 const meta: Meta = {
-  title: 'useInlineSDK',
+  title: 'useInline',
   component: Inline,
   argTypes: {
     publicKey: {
