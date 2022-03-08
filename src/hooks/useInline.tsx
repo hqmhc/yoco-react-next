@@ -22,7 +22,7 @@ export const useInline = (publicKey: string, config: YocoInlineConfig) => {
       return;
     }
 
-    inline.on((window as any).yocoSDK.Events.VALIDITY_CHANGE, () => {
+    inline.on((window as any).BlackbirdSDK.Events.VALIDITY_CHANGE, () => {
       setIsValid(inline.isValid());
       setValidationErrorMessage(inline.validationErrorMessage());
     });

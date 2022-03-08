@@ -15,7 +15,7 @@ export const useYoco = (publicKey: string, id?: string) => {
   const [yocoSDK, setYocoSDK] = useState<YocoSDK>();
   const initSdk = () => {
     setYocoSDK(
-      new (window as any).yocoSDK({
+      new (window as any).BlackbirdSDK({
         publicKey,
         id,
       })
@@ -23,7 +23,7 @@ export const useYoco = (publicKey: string, id?: string) => {
   };
 
   useEffect(() => {
-    if (!(window as any).yocoSDK) {
+    if (!(window as any).BlackbirdSDK) {
       addScript(() => initSdk());
     } else {
       initSdk();
