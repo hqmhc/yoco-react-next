@@ -4,10 +4,6 @@ import { Meta, Story } from '@storybook/react';
 import { useInline } from '../src/hooks/useInline';
 import { InlineForm } from '../src/InlineForm';
 
-/* todo
- https://deploy-preview-38--modest-shannon-b4f7f0.netlify.app/online/inline/reference/
-*/
-
 interface Props extends HTMLAttributes<HTMLFormElement> {
   publicKey: string;
   paymentId: string;
