@@ -1,28 +1,35 @@
 import React, { FC, HTMLAttributes }  from 'react';
 import { Meta, Story } from '@storybook/react';
 
-import { YocoCheckoutResult } from '../src/types';
+import { YocoCheckoutResult, Currency } from '../src/types';
 import { usePopup } from '../src/hooks/usePopup';
 
 interface Props extends HTMLAttributes<HTMLFormElement> {
+  amountInCents: number;
+  currency: Currency;
   publicKey: string;
   paymentId: string;
 }
 
-const Popup: FC<Props> = ({publicKey, paymentId}) => {
+const Popup: FC<Props> = ({ amountInCents, currency, publicKey, paymentId}) => {
   const [showPopup, isYocoReady] = usePopup(publicKey, paymentId);
 
-  async function callback(res: YocoCheckoutResult) {
-    alert('callback!');
-    console.log({res});
+  async function callback(result: YocoCheckoutResult) {
+    if (result.error) {
+      alert(`❌ Error: [${result.error.status}] ${result.error.message}`);
+      return;
+    }
+    alert(`✅ Success. ID: ${result.id}`)
   }
 
   async function onClose() {
-    alert('"onClose" callback invoked.');
+    alert('⛔️ Pop Up Closed');
   }
 
   async function onSubmit() {
     showPopup({
+      amountInCents,
+      currency,
       callback,
       onClose
     });
@@ -62,6 +69,8 @@ const Template: Story<Props> = args => <Popup {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  publicKey: 'pk_test_68b64fa8qRzN52Xe2234',
-  paymentId: 'p_pLpJGWOoJ2BflwVf61cdk0gZ'
+  amountInCents: 1000,
+  currency: 'ZAR',
+  paymentId: 'p_ogkY59Ge25PtO5AtQbIdO4L9',
+  publicKey: 'pk_test_ed3c54a6gOol69qa7f45',
 };
