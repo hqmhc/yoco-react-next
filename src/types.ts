@@ -10,11 +10,13 @@ export type YocoCustomer = {
 export type YocoInlineLayout = 'plain' | 'basic' | 'field';
 
 export interface YocoInlineConfig {
-  YocoCustomer?: YocoCustomer;
+  amountInCents: number;
+  currency: Currency;
   layout: YocoInlineLayout;
   showErrors?: boolean;
   showSubmitButton?: boolean;
   submitButtonText?: string;
+  YocoCustomer?: YocoCustomer;
 }
 
 type YocoSDKInlineSubmission = {
@@ -30,6 +32,7 @@ export interface YocoSDKInlineInstance {
   mount: (element: string) => void;
   on: (event: string, callback: () => void) => void;
   submit: (submission: YocoSDKInlineSubmission) => Promise<YocoCheckoutResult>;
+  createToken: () => Promise<YocoCheckoutResult>;
   isValid: () => boolean;
   validationErrorMessage: () => string;
 }
