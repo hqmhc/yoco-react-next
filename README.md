@@ -68,56 +68,6 @@ Learn how to use the API in the [official guide](https://deploy-preview-38--mode
 
 The [Postman collection](./docs/YocoBlackbirdv1.0.0.postman_collection.json) has a payment verification helper.
 
-## Inline checkout experience
-The React SDK for Yoco comes with an `useInline` hook and an optional `InlineForm` component that you can use to deliver the [inline checkout experience](https://deploy-preview-38--modest-shannon-b4f7f0.netlify.app/online/inline/inline).
-
-A minimal example follows:
-
-```tsx
-import React, { FC }  from 'react';
-import { useInline } from '@yoco/yoco-react';
-
-const Inline: FC<> = () => {
-  const [inline] = useInline(
-    publicKey,
-    {
-      layout: 'plain',
-      showErrors: true,
-      showSubmitButton: true,
-    }
-  );
-
-  useEffect(() => {
-    if (!inline) {
-      return;
-    }
-    inline.mount("#card-frame");
-  }, [inline]);
-
-  async function onSubmit() {
-    try {
-      const result = await inline.submit({ id: 'YOUR_PAYMENT_ID' });
-      console.log(result);
-      if (result.error) {
-        // handle failure
-        // result.error.message - Error message
-        // result.error.status  - Error status
-        return;
-      }
-
-      // result.id has the payment's id for verification
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-
-  return (
-    <InlineForm onSubmit={onSubmit} />
-  );
-}
-```
-
 ## useYoco hook
 
 If all you need is the base Yoco SDK without the hooks and components, the library exposes a `useYoco` hook.
@@ -125,46 +75,6 @@ If all you need is the base Yoco SDK without the hooks and components, the libra
 You can then use the SDK as normal according to the official docs. It is the same hook used internally by the rest of the hooks in this library.
 
 The hook expects your Yoco public key, and optionally a payment ID depending on your use case.
-
-```tsx
-import React, { FC }  from 'react';
-import { useInline } from '@yoco/yoco-react';
-
-const SDKHook: FC<> = () => {
-  const yocoSDK = useYoco('YOUR_PUBLIC_KEY');
-
-  useEffect(() => {
-    if (!yocoSDK) {
-      return;
-    }
-    // use any of the SDK's methods, for example:
-
-    // Create a new dropin form instance
-    const inline = yocoSDK.inline({
-      layout: 'field',
-      amountInCents: 2499,
-      currency: 'ZAR'
-    });
-    inline.mount('#card-frame');
-
-  }, [yocoSDK]);
-
-  return (
-    <form id="payment-form" method="POST">
-      <div class="one-liner">
-        <div id="card-frame">
-          <!-- Yoco Inline form will be added here -->
-        </div>
-        <button id="pay-button">
-          PAY ZAR 24.99
-        </button>
-      </div>
-      <p class="success-payment-message" />
-    </form>
-  )
-}
-```
-
 # Support
 
 If you have any questions, feedback or you are experiencing issues integrating, please contact developers@yoco.com.
