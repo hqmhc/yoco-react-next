@@ -6,8 +6,8 @@ describe('usePopup Component', () => {
   it('renders without crashing', () => {
     render(
       <PopupTest
-        publicKey="pk_test_68b64fa8qRzN52Xe2234"
-        paymentId="p_pLpJGWOoJ2BflwVf61cdk0gZ"
+        publicKey="pk_test_ed3c54a6gOol69qa7f45"
+        paymentId="p_ogkY59Ge25PtO5AtQbIdO4L9"
       />
     );
   });

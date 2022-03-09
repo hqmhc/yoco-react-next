@@ -20,8 +20,11 @@ The hook itself expects two parameters:
 - Your Yoco public key. Learn more [about that here](https://developer.yoco.com/online/resources/integration-keys).
 - The payment ID for the checkout. You will have initiated the payment with a server-to-server call on the backend. Learn more about payment initiation [from the official documentation](https://deploy-preview-38--modest-shannon-b4f7f0.netlify.app/blackbird/sdk/accept-payments#2-initiate-a-payment).
 
-The `showPopup` method expects a callback as the first parameter. This callback will receive the `YocoCheckoutResult` after the pop up has completed processing the user's payment.
-The second parameter to `showPopup` is a callback to be invoked when the user dimisses the pop up.
+🛠️ Use [the Postman collection](./docs/YocoBlackbirdv1.0.0.postman_collection.json) to quickly create test payments.
+
+The `showPopup` method expects a `callback`. This callback will receive the `YocoCheckoutResult` after the pop up has completed processing the user's payment.
+It will require also require an `onClose` method to handle when the user dimisses the pop up.
+Then finally a `currency` and `amountInCents`.
 
 Here's an example implementation:
 
@@ -47,7 +50,7 @@ const PopupExample: FC = () => {
   }
 
   async function onSubmit() {
-    showPopup({ callback, onClose });
+    showPopup({ amountInCents: 1000, callback, currency: 'ZAR', onClose });
   }
 
   return (
@@ -62,6 +65,8 @@ You can view the full list of configuration options for the showPopup method in 
 
 The `YocoCheckoutResult` has an `id` that you can use for verifying a payment with a server-to-server call.
 Learn how to use the API in the [official guide](https://deploy-preview-38--modest-shannon-b4f7f0.netlify.app/blackbird/sdk/save-card-during-payment#6-optional-verify-the-payment-succeeded).
+
+The [Postman collection](./docs/YocoBlackbirdv1.0.0.postman_collection.json) has a payment verification helper.
 
 ## Inline checkout experience
 The React SDK for Yoco comes with an `useInline` hook and an optional `InlineForm` component that you can use to deliver the [inline checkout experience](https://deploy-preview-38--modest-shannon-b4f7f0.netlify.app/online/inline/inline).

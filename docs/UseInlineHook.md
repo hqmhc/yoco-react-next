@@ -21,21 +21,7 @@ const [inline, isValid, validationErrorMessage] = useInline(
 );
 ```
 
-You can use isValid and validationErrorMessage to display error messages in the case when you would have set `showErrors` to false.
-
-```tsx
-const [error, setError] = useState('');
-
-useEffect(() => {
-    if (isValid) {
-        setError('');
-        return;
-    }
-    if (isValid && validationErrorMessage) {
-        setError(validationErrorMessage);
-    }
-}, [isValid, validationErrorMessage])
-```
+You can use `isValid` and `validationErrorMessage` to display error messages in the case when you would have set `showErrors` to false.
 
 The optional `YocoCustomer` has structure:
 

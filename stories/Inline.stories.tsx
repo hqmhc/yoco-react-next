@@ -93,8 +93,8 @@ const Template: Story<Props> = args => <Inline {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  publicKey: 'pk_test_68b64fa8qRzN52Xe2234',
-  paymentId: 'p_pLpJGWOoJ2BflwVf61cdk0gZ',
+  publicKey: 'pk_test_ed3c54a6gOol69qa7f45',
+  paymentId: 'p_ogkY59Ge25PtO5AtQbIdO4L9',
   showErrors: true,
   showSubmitButton: true,
   submitButtonText: 'Pay R20'

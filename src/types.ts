@@ -38,8 +38,8 @@ export interface YocoPopupConfig {
   id?: string;
   callback: (result: YocoCheckoutResult) => void;
   onClose?: () => void;
-  amountInCents?: number;
-  currency?: Currency;
+  amountInCents: number;
+  currency: Currency;
   YocoCustomer?: string;
   'YocoCustomer.email'?: string;
   'YocoCustomer.phone'?: string;
@@ -56,11 +56,8 @@ export interface YocoPopupConfig {
 export interface YocoCheckoutResult {
   id?: string;
   error?: {
-    data: {
-      message: string;
-      status: number;
-    };
     message: string;
+    status: number;
   };
   paymentMethod: string | undefined;
   source: {
