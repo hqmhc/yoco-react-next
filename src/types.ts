@@ -56,6 +56,11 @@ export interface YocoPopupConfig {
   paymentType?: 'CARD';
 }
 
+export interface YocoEFTPopupConfig {
+  id: string;
+  paymentType?: 'EFT';
+}
+
 export interface YocoCheckoutResult {
   id?: string;
   error?: {
@@ -78,4 +83,5 @@ export interface YocoCheckoutResult {
 export interface YocoSDK {
   inline: (config: YocoInlineConfig) => YocoSDKInlineInstance;
   showPopup: (config: YocoPopupConfig) => void;
+  submit: (config: YocoEFTPopupConfig) => Promise<YocoCheckoutResult>;
 }

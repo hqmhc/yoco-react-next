@@ -44,6 +44,18 @@ const meta: Meta = {
   title: 'usePopup',
   component: Popup,
   argTypes: {
+    amountInCents: {
+      description: 'Amount in cents.',
+      control: {
+        type: 'text',
+      },
+    },
+    currency: {
+      description: 'Currency.',
+      control: {
+        type: 'text',
+      },
+    },
     publicKey: {
       description: 'Yoco merchant public key.',
       control: {
@@ -51,7 +63,7 @@ const meta: Meta = {
       },
     },
     paymentId: {
-      description: 'Yoco merchant secret key.',
+      description: 'Yoco payment ID.',
       control: {
         type: 'text',
       },
@@ -69,8 +81,8 @@ const Template: Story<Props> = args => <Popup {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  amountInCents: 1000,
+  amountInCents: 200,
   currency: 'ZAR',
-  paymentId: 'p_ogkY59Ge25PtO5AtQbIdO4L9',
-  publicKey: 'pk_test_ed3c54a6gOol69qa7f45',
+  paymentId: '',
+  publicKey: '',
 };

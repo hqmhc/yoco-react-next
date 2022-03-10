@@ -1,6 +1,6 @@
 import { InlineForm } from './InlineForm';
-import { useInline } from './hooks/useInline';
 import { usePopup } from './hooks/usePopup';
+import { useEFT } from './hooks/useEFT';
 import { useYoco } from './hooks/useYoco';
 
-export { InlineForm, useInline, usePopup, useYoco };
+export { InlineForm, useEFT, usePopup, useYoco };

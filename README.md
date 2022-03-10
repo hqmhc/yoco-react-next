@@ -1,5 +1,8 @@
-# React Yoco
-React hooks and components for accepting payments in your React application with [Yoco Gateway](https://www.yoco.com/za/yoco-gateway/).
+# React hooks for Yoco Gateway
+
+_**v2.0.0 🎉 - Now with EFT.**_
+
+React hooks and components for accepting card and EFT payments in your React application with [Yoco Gateway](https://www.yoco.com/za/yoco-gateway/).
 
 ![Yoco payments banner](https://ps.w.org/yoco-payment-gateway/assets/banner-1544x500.png?rev=2683672)
 
@@ -62,20 +65,80 @@ const PopupExample: FC = () => {
 You can view the full list of configuration options for the showPopup method in the [usePopupHook reference](./docs/usePopupHook.md).
 
 ### Verifying successful payments
-
-The `YocoCheckoutResult` has an `id` that you can use for verifying a payment with a server-to-server call.
+The `result` will have a value of "succeeded" in the `status` property for a successful payment.
+It also has an `id` that you can use for verifying a payment with a server-to-server call.
 Learn how to use the API in the [official guide](https://deploy-preview-38--modest-shannon-b4f7f0.netlify.app/blackbird/sdk/save-card-during-payment#6-optional-verify-the-payment-succeeded).
 
 The [Postman collection](./docs/YocoBlackbirdv1.0.0.postman_collection.json) has a payment verification helper.
 
-## useYoco hook
+### useYoco hook
 
 If all you need is the base Yoco SDK without the hooks and components, the library exposes a `useYoco` hook.
+
+```tsx
+import { useYoco } from '@yoco/yoco-react';
+
+...
+
+const yocoSDK = useYoco(publicKey);
+```
 
 You can then use the SDK as normal according to the official docs. It is the same hook used internally by the rest of the hooks in this library.
 
 The hook expects your Yoco public key, and optionally a payment ID depending on your use case.
+
+You may also use the `useYocoLegacy` hook to get the previous generation SDK (https://js.yoco.com/sdk/v1/yoco-sdk-web.js). This may be useful if you prefer to use [the inline checkout experience](https://developer.yoco.com/online/inline/inline) which is currently not available in v2.0.0.
+
+## Accepting EFT payments
+You can easily accept instant EFT payments in your React application with the `useEFT` hook.
+The hook takes a public key as the only parameter and returns a `showEFT` method and a boolean variable `isYocoReady`.
+
+To display an EFT pop-up, call the `showEFT` method with the `id` of the payment you would have prepared in a server-to-server call.
+
+```tsx
+import React from 'react';
+import { useEFT } from '@yoco/yoco-react';
+
+const App = () => {
+  const [showEFT, isYocoReady] = useEFT('your_public_key');
+  async function onSubmit() {
+    try {
+      const result = await showEFT({ id: 'your_payment_id' });
+      if (result.error) {
+        // handle failure
+        // result.error.message - Error message
+        // result.error.status  - Error status
+        return;
+      }
+      if (result.status === "succeeded") {
+        // handle success for result.id
+        return;
+      }
+      // handle payment statuses that are not successes.
+      // for example, the user can dismiss the EFT pop-up
+      // resulting in a status of "cancelled"
+    } catch (err) {
+      // handle general failures
+    }
+  }
+
+  return (
+    <button disabled={!isYocoReady} onClick={onSubmit}>Pay</button>
+  );
+};
+```
+
+## Inline Checkouts
+[Inline checkouts](https://developer.yoco.com/online/inline/inline) will be available in a future release.
+
+# Playground
+The playground is a quick way to try out the different hooks:
+```
+cd example && yarn start
+```
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for more.
+
 # Support
 
 If you have any questions, feedback or you are experiencing issues integrating, please contact developers@yoco.com.
-
