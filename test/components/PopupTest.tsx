@@ -1,13 +1,20 @@
 import React, { FC, HTMLAttributes } from 'react';
 import { usePopup } from '../../src/hooks/usePopup';
-import { YocoCheckoutResult } from '../../src/types';
+import { YocoCheckoutResult, Currency } from '../../src/types';
 
 interface Props extends HTMLAttributes<HTMLFormElement> {
+  amountInCents: number;
+  currency: Currency;
   publicKey: string;
   paymentId: string;
 }
 
-export const PopupTest: FC<Props> = ({ publicKey, paymentId }) => {
+export const PopupTest: FC<Props> = ({
+  amountInCents,
+  currency,
+  publicKey,
+  paymentId,
+}) => {
   const [showPopup, isYocoReady] = usePopup(publicKey, paymentId);
 
   async function callback(res: YocoCheckoutResult) {
@@ -21,6 +28,8 @@ export const PopupTest: FC<Props> = ({ publicKey, paymentId }) => {
 
   async function onSubmit() {
     showPopup({
+      amountInCents,
+      currency,
       callback,
       onClose,
     });
