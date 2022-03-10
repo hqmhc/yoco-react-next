@@ -15,19 +15,19 @@ yarn add @yoco/yoco-react
 
 The [Yoco Popup](https://developer.yoco.com/online/popup/popup) offers you the quickest and easiest way to accept online card payments.
 
-You can use the `usePopup` hook to show the pop up payment form in your React application.
+You can use the `usePopup` hook to present the payment form in your React application.
 
-The hook returns a `showPopup` method you can call to trigger the pop up. It also returns variable `isYocoReady` that you can use to determine whether or not the Yoco SDK has loaded and is ready for the pop up to be displayed.
+The hook returns a `showPopup` method used to trigger the pop-up. It also returns variable `isYocoReady` for use in determining whether the Yoco SDK is loaded and ready or not.
 
-The hook itself expects two parameters:
-- Your Yoco public key. Learn more [about that here](https://developer.yoco.com/online/resources/integration-keys).
-- The payment ID for the checkout. You will have initiated the payment with a server-to-server call on the backend. Learn more about payment initiation [from the official documentation](https://deploy-preview-38--modest-shannon-b4f7f0.netlify.app/blackbird/sdk/accept-payments#2-initiate-a-payment).
+The hook itself accepts two parameters:
+- Your Yoco public key. Learn how to get one [on the Yoco website](https://developer.yoco.com/online/resources/integration-keys).
+- The payment ID for the checkout that will have been initiated with a server-to-server call on the backend. Learn more [about payment initiation](https://deploy-preview-38--modest-shannon-b4f7f0.netlify.app/blackbird/sdk/accept-payments#2-initiate-a-payment).
 
 🛠️ Use [the Postman collection](./docs/YocoBlackbirdv1.0.0.postman_collection.json) to quickly create test payments.
 
-The `showPopup` method expects a `callback`. This callback will receive the `YocoCheckoutResult` after the pop up has completed processing the user's payment.
-It will require also require an `onClose` method to handle when the user dimisses the pop up.
-Then finally a `currency` and `amountInCents`.
+The `showPopup` method expects a `callback`. This callback will receive the `YocoCheckoutResult` when the pop-up completes processing a payment.
+Additionally, it requires an `onClose` method to be invoked when a user dimisses the pop-up.
+Finally, it will expect a `currency` and an `amountInCents`.
 
 Here's an example implementation:
 
@@ -49,7 +49,7 @@ const PopupExample: FC = () => {
   }
 
   async function onClose() {
-    // handle pop up dismissal
+    // handle pop-up dismissal
   }
 
   async function onSubmit() {
