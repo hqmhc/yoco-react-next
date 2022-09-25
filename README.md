@@ -33,7 +33,7 @@ Here's an example implementation:
 
 ```tsx
 import React, { FC }  from 'react';
-import { usePopup } from '@yoco/yoco-react';
+import { usePopup } from '@lekkercommerce/yoco-react';
 
 const PopupExample: FC = () => {
   const [showPopup, isYocoReady] = usePopup('your_public_key', 'a_valid_payment_id');
@@ -76,7 +76,7 @@ The [Postman collection](./docs/YocoBlackbirdv1.0.0.postman_collection.json) has
 If all you need is the base Yoco SDK without the hooks and components, the library exposes a `useYoco` hook.
 
 ```tsx
-import { useYoco } from '@yoco/yoco-react';
+import { useYoco } from '@lekkercommerce/yoco-react';
 
 ...
 
@@ -97,7 +97,7 @@ To display an EFT pop-up, call the `showEFT` method with the `id` of the payment
 
 ```tsx
 import React from 'react';
-import { useEFT } from '@yoco/yoco-react';
+import { useEFT } from '@lekkercommerce/yoco-react';
 
 const App = () => {
   const [showEFT, isYocoReady] = useEFT('your_public_key');
