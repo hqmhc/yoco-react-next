@@ -5,7 +5,7 @@ import { YocoSDK } from '../types';
 const addScript = (onLoad: () => void) => {
   const script = document.createElement('script');
   script.src =
-    'https://blackbird-web-sdk.netlify.app/sdk/v1/blackbird-web-sdk.js';
+    'https://js.yoco.com/sdk/v2/blackbird-web-sdk.js';
   script.async = true;
   script.onload = onLoad;
   document.head.appendChild(script);
