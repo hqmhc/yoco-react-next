@@ -9,7 +9,7 @@ React hooks and components for accepting card and EFT payments in your React app
 ## Installation
 
 ```
-yarn add @lekkercommerce/yoco-react/yoco-react
+yarn add @lekkercommerce/yoco-react
 ```
 ## Getting Started
 
