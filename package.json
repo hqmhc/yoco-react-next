@@ -35,8 +35,8 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "@yoco/yoco-react",
-  "author": "Yoco (https://yoco.com)",
+  "name": "@lekkercommerce/yoco-react",
+  "author": "Lekker Commerce (https://lekkercommerce.co.za)",
   "module": "dist/yoco-react.esm.js",
   "size-limit": [
     {
