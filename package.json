@@ -1,5 +1,5 @@
 {
-  "version": "2.2.0",
+  "version": "2.2.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -32,6 +32,12 @@
   },
   "name": "@lekkercommerce/yoco-react",
   "author": "Lekker Commerce (https://lekkercommerce.co.za)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hqmhc/yoco-react-next.git"
+  },
+  "homepage": "https://github.com/hqmhc/yoco-react-next",
+  "keywords": ["yoco", "react", "gateway", "eft", "payments", "visa", "mastercard"],
   "module": "dist/yoco-react.esm.js",
   "size-limit": [
     {
