@@ -1,6 +1,6 @@
 # React hooks for Yoco Gateway
 
-_**v2.1.1 🎉 - Now with EFT.**_
+_**v2.2.0 🎉 - Now with EFT.**_
 
 React hooks and components for accepting card and EFT payments in your React application with [Yoco Gateway](https://www.yoco.com/za/yoco-gateway/).
 
